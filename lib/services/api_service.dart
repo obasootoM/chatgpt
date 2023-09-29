@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class Apiservice {
   static Future<List<Model>> getModel() async {
     try {
-      var response = await http.get(Uri.parse('$GET_BASE_URL/models'),
+      var response = await http.get(Uri.parse('$BASE_URL/models'),
           headers: {"Authorization": "Bearer $BEARER_TOKEN"});
 
       Map jsonResponse = jsonDecode(response.body);
@@ -19,7 +19,7 @@ class Apiservice {
       List temp = [];
       for (var i in jsonResponse['data']) {
         temp.add(i);
-        print('temp ${i['id']}');
+        //print('temp ${i['id']}');
       }
       return Model.modelSnapshot(temp);
     } catch (e) {
@@ -31,7 +31,7 @@ class Apiservice {
   static Future<List<ChatModel>> sendModel(
       {required String msg, required String modelId}) async {
     try {
-      var response = await http.post(Uri.parse('$POST_BASE_URL/completions'),
+      var response = await http.post(Uri.parse('$BASE_URL/completions'),
           headers: {
             "Authorization": "Bearer $BEARER_TOKEN",
             "Content-Type": "application/json"

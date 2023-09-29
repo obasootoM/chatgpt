@@ -1,4 +1,5 @@
 import 'package:chatgpt/constant/constant.dart';
+import 'package:chatgpt/provider/chat_provider.dart';
 import 'package:chatgpt/provider/model_provider.dart';
 import 'package:chatgpt/services/api_service.dart';
 import 'package:chatgpt/services/asset_manager.dart';
@@ -47,6 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   Widget build(BuildContext context) {
     final modelProvider = Provider.of<ModelProvider>(context);
+    final chatProvider = Provider.of<ChatProvider>(context);
     return Scaffold(
         appBar: AppBar(
           elevation: 3.0,
@@ -139,7 +141,6 @@ class _ChatScreenState extends State<ChatScreen> {
       print('e $e');
     } finally {
       setState(() {
-
         isLoading = false;
       });
     }
